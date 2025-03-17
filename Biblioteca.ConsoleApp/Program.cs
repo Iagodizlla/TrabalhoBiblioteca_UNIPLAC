@@ -6,15 +6,19 @@ public class Program
 {
     static List<Leitor> leitores = new List<Leitor>(){
         new Leitor("João Silva", "123.456.789.00", 23)
-        { Livros = new List<Livro> { new Livro("Dom Casmurro", "Machado de Assis")}},
+        { Livros = new List<Livro> {
+        new Livro("Dom Casmurro", "Machado de Assis")}},
 
         new Leitor("Maria Souza", "987.654.321.00", 18)
-        { Livros = new List<Livro> { new Livro("1984", "George Orwell"),
-        new Livro("O Senhor dos Aneis", "J.R.R. Tolkien"), new Livro("O cu do Mundo", "Josue Pereira"),
+        { Livros = new List<Livro> {
+        new Livro("1984", "George Orwell"),
+        new Livro("O Senhor dos Aneis", "J.R.R. Tolkien"),
+        new Livro("O cu do Mundo", "Josue Pereira"),
         new Livro("O grito", "Arthur Machado")}},
 
-        new Leitor("Iago Henrique Schlemper", "123.456.789.00", 19)
-        { Livros = new List<Livro> { new Livro("Amanda do Ceu", "Amanda Pereira")}},
+        new Leitor("Iago Henrique Schlemper", "123.456.789.99", 19)
+        { Livros = new List<Livro> { 
+        new Livro("Amanda do Ceu", "Amanda Pereira")}},
 
         new Leitor("Eduardo da Silva Ramos", "012.983.133.22", 19){}
     }; // Lista para armazenar todos os leitores cadastrados
