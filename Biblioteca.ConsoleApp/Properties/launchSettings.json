@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Biblioteca.ConsoleApp": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
