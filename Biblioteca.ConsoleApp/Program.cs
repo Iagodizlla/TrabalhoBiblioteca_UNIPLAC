@@ -97,7 +97,15 @@ public class Program
         Console.Write("Digite o título do livro: ");
         string titulo = Console.ReadLine()!;
 
-        Livro livro = leitor.Livros.Find(l => l.Titulo.Equals(titulo, StringComparison.OrdinalIgnoreCase))!;
+        Livro livro = null!;
+        for (int i = 0; i < leitor.Livros.Count; i++)
+        {
+            if (leitor.Livros[i].Titulo == titulo)
+            {
+                livro = leitor.Livros[i];
+                break;
+            }
+        }
 
         if (livro == null)
         {
