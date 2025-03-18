@@ -200,7 +200,7 @@ public class Program
         // Busca um Leitor pelo CPF
         for (int i = 0; i < leitores.Count; i++)
         {
-            if (leitores[i].Cpf.Equals(cpf, StringComparison.OrdinalIgnoreCase))
+            if (leitores[i].Cpf == cpf)
             {
                 return leitores[i];
             }
