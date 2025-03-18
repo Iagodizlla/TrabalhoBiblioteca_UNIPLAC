@@ -198,7 +198,14 @@ public class Program
     static Leitor BuscarLeitor(string cpf)
     {
         // Busca um Leitor pelo CPF
-        return leitores.Find(l => l.Cpf.Equals(cpf, StringComparison.OrdinalIgnoreCase))!;
+        for (int i = 0; i < leitores.Count; i++)
+        {
+            if (leitores[i].Cpf.Equals(cpf, StringComparison.OrdinalIgnoreCase))
+            {
+                return leitores[i];
+            }
+        }
+        return null!;
     }
 
     static void CadastrarLivro()
