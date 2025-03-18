@@ -32,19 +32,10 @@ public class Program
             string opcao = Console.ReadLine()!;
             Console.WriteLine();
 
-            // Executa a ação correspondente à opção escolhida
-            switch (opcao)
-            {
-                case "1": CadastrarLeitor(); break;
-                case "2": ListarLeitores(); break;
-                case "3": CadastrarLivro(); break;
-                case "4": ListarLivrosDoLeitor(); break;
-                case "5": ExcluirLeitor(leitores); break;
-                case "6": EditarLeitor(); break;
-                case "7": TranferirLivro(); break;
-                case "0": return;
-                default: Console.WriteLine("Opção inválida!\n"); break;
-            }
+            SelecionarOpcao(opcao);
+            if(opcao == "0")
+                return;
+
             Console.ReadLine();
         }
     }
@@ -62,6 +53,22 @@ public class Program
         Console.WriteLine("7. Transferir Livro");
         Console.WriteLine("0. Sair");
         Console.Write("Escolha uma opção: ");
+    }
+    public static void SelecionarOpcao(string opcao)
+    {
+        // Executa a ação correspondente à opção escolhida
+        switch (opcao)
+        {
+            case "1": CadastrarLeitor(); break;
+            case "2": ListarLeitores(); break;
+            case "3": CadastrarLivro(); break;
+            case "4": ListarLivrosDoLeitor(); break;
+            case "5": ExcluirLeitor(leitores); break;
+            case "6": EditarLeitor(); break;
+            case "7": TranferirLivro(); break;
+            case "0": return;
+            default: Console.WriteLine("Opção inválida!\n"); break;
+        }
     }
     public static void TranferirLivro()
     {
@@ -173,9 +180,9 @@ public class Program
         }
 
         // Percorre a lista de leitores e exibe seus nomes, CPFs e a quantidade de livros que possuem
-        foreach (var leitor in leitores)
+        for (int i = 0; i < leitores.Count; i++)
         {
-            Console.WriteLine($"Leitor: {leitor.Nome} | CPF: {leitor.Cpf} | Idade: {leitor.Idade} ({leitor.Livros.Count} livros)");
+            Console.WriteLine($"Leitor: {leitores[i].Nome} | CPF: {leitores[i].Cpf} | Idade: {leitores[i].Idade} ({leitores[i].Livros.Count} livros)");
         }
         Console.WriteLine();
     }
@@ -222,9 +229,9 @@ public class Program
 
         // Exibe a lista de livros do Leitor
         Console.WriteLine($"Livros de {leitor.Nome} (CPF: {leitor.Cpf}):");
-        foreach (var livro in leitor.Livros)
+        for (int i = 0; i < leitor.Livros.Count; i++)
         {
-            Console.WriteLine($"- {livro.Titulo} ({livro.Autor})");
+            Console.WriteLine($"- {leitor.Livros[i].Titulo} ({leitor.Livros[i].Autor})");
         }
         Console.WriteLine();
     }
