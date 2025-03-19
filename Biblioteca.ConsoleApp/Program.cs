@@ -1,28 +1,28 @@
-﻿using System;
+﻿using Biblioteca.ConsoleApp;
+using System;
 using System.Collections.Generic;
 namespace Biblioteca.ConsoleApp;
 
 public class Program
 {
-    static List<Leitor> leitores = new List<Leitor>(){
+    public static List<Leitor> leitores = new List<Leitor>(){
         new Leitor("João Silva", "123.456.789.00", 23)
         { Livros = new List<Livro> {
-        new Livro("Dom Casmurro", "Machado de Assis")}},
+        new Livro("Dom Casmurro", "Machado de Assis", "Soco Ingles", "123456789", "Machado de Assis", "Filosofia", 1999, 566, "Dura")}},
 
         new Leitor("Maria Souza", "987.654.321.00", 18)
         { Livros = new List<Livro> {
-        new Livro("1984", "George Orwell"),
-        new Livro("O Senhor dos Aneis", "J.R.R. Tolkien"),
-        new Livro("O cu do Mundo", "Josue Pereira"),
-        new Livro("O grito", "Arthur Machado")}},
+        new Livro("1984", "George Orwell", "A guerra", "121212121", "S.S.D Over", "Guerra", 1985, 300, "Dura"),
+        new Livro("O Senhor dos Aneis", "J.R.R. Tolkien", "O caminho", "212121212", "D&D", "Fantasia", 1990, 990, "Dura"),
+        new Livro("O cu do Mundo", "Josue Pereira", "A volta", "111111111", "Zlla", "+18", 2020, 30, "Mole"),
+        new Livro("O grito", "Arthur Machado", "A revolta", "222222222", "ZONA &&&", "Terror", 2017, 289, "Mole")}},
 
         new Leitor("Iago Henrique Schlemper", "123.456.789.99", 19)
-        { Livros = new List<Livro> { 
-        new Livro("Amanda do Ceu", "Amanda Pereira")}},
+        { Livros = new List<Livro> {
+        new Livro("Amanda do Ceu", "Amanda Pereira", "2", "999999999", "BR Conpani", "Comedia", 2014, 180, "Mole")}},
 
         new Leitor("Eduardo da Silva Ramos", "012.983.133.22", 19){}
     }; // Lista para armazenar todos os leitores cadastrados
-
     static void Main()
     {
         while (true)
@@ -33,7 +33,7 @@ public class Program
             Console.WriteLine();
 
             SelecionarOpcao(opcao);
-            if(opcao == "0")
+            if (opcao == "0")
                 return;
 
             Console.ReadLine();
@@ -66,7 +66,7 @@ public class Program
             case "5": ExcluirLeitor(leitores); break;
             case "6": EditarLeitor(); break;
             case "7": TranferirLivro(); break;
-            case "0": return;
+            case "0": Console.Clear(); return;
             default: Console.WriteLine("Opção inválida!\n"); break;
         }
     }
@@ -157,7 +157,6 @@ public class Program
         leitores.Remove(leitor);
         Console.WriteLine("Leitor excluído!\n");
     }
-
     static void CadastrarLeitor()
     {
         Console.Write("Digite o CPF do Leitor: ");
@@ -178,7 +177,6 @@ public class Program
         leitores.Add(new Leitor(nome, cpf, idade)); // Adiciona um novo Leitor à lista
         Console.WriteLine("Leitor cadastrado com sucesso!\n");
     }
-
     static void ListarLeitores()
     {
         if (leitores.Count == 0)
@@ -194,10 +192,8 @@ public class Program
         }
         Console.WriteLine();
     }
-
     static Leitor BuscarLeitor(string cpf)
     {
-        // Busca um Leitor pelo CPF
         for (int i = 0; i < leitores.Count; i++)
         {
             if (leitores[i].Cpf == cpf)
@@ -207,7 +203,6 @@ public class Program
         }
         return null!;
     }
-
     static void CadastrarLivro()
     {
         Console.Write("Digite o CPF do Leitor: ");
@@ -225,11 +220,25 @@ public class Program
         string titulo = Console.ReadLine()!;
         Console.Write("Digite o autor do livro: ");
         string autor = Console.ReadLine()!;
-        leitor.Livros.Add(new Livro(titulo, autor));
+        Console.Write("Digite o subtitulo? ");
+        string subtitulo = Console.ReadLine()!;
+        Console.Write("Digite o ISBN do livro: ");
+        string isbn = Console.ReadLine()!;
+        Console.Write("Digite a editora do livro: ");
+        string editora = Console.ReadLine()!;
+        Console.Write("Digite o genero do livro: ");
+        string genero = Console.ReadLine()!;
+        Console.Write("Digite o ano de publicação do livro: ");
+        int anoPublicacao = int.Parse(Console.ReadLine()!);
+        Console.Write("Digite o número de páginas do livro: ");
+        int numeroPaginas = int.Parse(Console.ReadLine()!);
+        Console.Write("Digite o tipo da capa: (Mole/Dura) ");
+        string tipocapa = Console.ReadLine()!;
+
+        leitor.Livros.Add(new Livro(titulo, autor, subtitulo, isbn, editora, genero, anoPublicacao, numeroPaginas, tipocapa));
 
         Console.WriteLine("Livro cadastrado com sucesso!\n");
     }
-
     static void ListarLivrosDoLeitor()
     {
         Console.Write("Digite o CPF do Leitor: ");
