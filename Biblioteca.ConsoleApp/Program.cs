@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 namespace Biblioteca.ConsoleApp;
-
 public class Program
 {
     public static List<Leitor> leitores = new List<Leitor>(){
@@ -23,6 +22,15 @@ public class Program
 
         new Leitor("Eduardo da Silva Ramos", "012.983.133.22", 19){}
     }; // Lista para armazenar todos os leitores cadastrados
+    public static List<Livro> livros = new List<Livro>()
+    {
+        new Livro("Dom Casmurro", "Machado de Assis", "Soco Ingles", "123456789", "Machado de Assis", "Filosofia", 1999, 566, "Dura"),
+        new Livro("1984", "George Orwell", "A guerra", "121212121", "S.S.D Over", "Guerra", 1985, 300, "Dura"),
+        new Livro("O Senhor dos Aneis", "J.R.R. Tolkien", "O caminho", "212121212", "D&D", "Fantasia", 1990, 990, "Dura"),
+        new Livro("O cu do Mundo", "Josue Pereira", "A volta", "111111111", "Zlla", "+18", 2020, 30, "Mole"),
+        new Livro("O grito", "Arthur Machado", "A revolta", "222222222", "ZONA &&&", "Terror", 2017, 289, "Mole"),
+        new Livro("Amanda do Ceu", "Amanda Pereira", "2", "999999999", "BR Conpani", "Comedia", 2014, 180, "Mole")
+    };
     static void Main()
     {
         while (true)
@@ -214,16 +222,21 @@ public class Program
             Console.WriteLine("Leitor não encontrado!\n");
             return;
         }
-
         // Solicita as informações do livro e adiciona à lista de livros do Leitor
+        Console.Write("Digite o ISBN do livro: ");
+        string isbn = Console.ReadLine()!;
+
+        if (livros.Exists(l => l.Isbn == isbn))
+        {
+            Console.WriteLine("Erro: livro já cadastrado!\n");
+            return;
+        }
         Console.Write("Digite o título do livro: ");
         string titulo = Console.ReadLine()!;
         Console.Write("Digite o autor do livro: ");
         string autor = Console.ReadLine()!;
         Console.Write("Digite o subtitulo? ");
         string subtitulo = Console.ReadLine()!;
-        Console.Write("Digite o ISBN do livro: ");
-        string isbn = Console.ReadLine()!;
         Console.Write("Digite a editora do livro: ");
         string editora = Console.ReadLine()!;
         Console.Write("Digite o genero do livro: ");
@@ -236,6 +249,7 @@ public class Program
         string tipocapa = Console.ReadLine()!;
 
         leitor.Livros.Add(new Livro(titulo, autor, subtitulo, isbn, editora, genero, anoPublicacao, numeroPaginas, tipocapa));
+        livros.Add(new Livro(titulo, autor, subtitulo, isbn, editora, genero, anoPublicacao, numeroPaginas, tipocapa));
 
         Console.WriteLine("Livro cadastrado com sucesso!\n");
     }
@@ -255,7 +269,9 @@ public class Program
         Console.WriteLine($"Livros de {leitor.Nome} (CPF: {leitor.Cpf}):");
         for (int i = 0; i < leitor.Livros.Count; i++)
         {
-            Console.WriteLine($"- {leitor.Livros[i].Titulo} ({leitor.Livros[i].Autor})");
+            Console.WriteLine($"- Titulo: {leitor.Livros[i].Titulo} SubTitulo: {leitor.Livros[i].SubTitulo} Editora: ({leitor.Livros[i].Editora}\n" +
+                $"Autor: {leitor.Livros[i].Autor} Ano de publicacao: {leitor.Livros[i].AnoPublicacao} Genero: {leitor.Livros[i].Genero}\n" +
+                $"ISBN: {leitor.Livros[i].Isbn} Numero de paginas: {leitor.Livros[i].NumeroPaginas} Tipo de capa: {leitor.Livros[i].TipoCapa}");
         }
         Console.WriteLine();
     }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 namespace Biblioteca.ConsoleApp;
-
 public class Livro
 {
     public string Titulo { get; }
@@ -16,10 +15,23 @@ public class Livro
 
     public Livro(string titulo, string autor, string subtitulo, string isbn, string editora, string genero, int anop, int numerop, string tipocapa)
     {
-        if (titulo == "" || autor == "" || subtitulo == "" || isbn == "" || editora == "" || genero == "" || anop < 0 || numerop < 0 || tipocapa == "")
+        if (string.IsNullOrWhiteSpace(titulo) ||
+            string.IsNullOrWhiteSpace(autor) ||
+            string.IsNullOrWhiteSpace(subtitulo) ||
+            string.IsNullOrWhiteSpace(isbn) ||
+            string.IsNullOrWhiteSpace(editora) ||
+            string.IsNullOrWhiteSpace(genero) ||
+            string.IsNullOrWhiteSpace(tipocapa))
         {
-            throw new ArgumentException("Valores inválidos.");
+            throw new ArgumentException("Valores inválidos: Nenhum campo pode ser vazio.");
         }
+
+        if (anop <= 0)
+            throw new ArgumentException("Ano de publicação deve ser maior que zero.");
+
+        if (numerop <= 0)
+            throw new ArgumentException("Número de páginas deve ser maior que zero.");
+
         Titulo = titulo.Trim();
         Autor = autor.Trim();
         SubTitulo = subtitulo.Trim();
