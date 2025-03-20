@@ -15,13 +15,8 @@ public class Livro
 
     public Livro(string titulo, string autor, string subtitulo, string isbn, string editora, string genero, int anop, int numerop, string tipocapa)
     {
-        if (string.IsNullOrWhiteSpace(titulo) ||
-            string.IsNullOrWhiteSpace(autor) ||
-            string.IsNullOrWhiteSpace(subtitulo) ||
-            string.IsNullOrWhiteSpace(isbn) ||
-            string.IsNullOrWhiteSpace(editora) ||
-            string.IsNullOrWhiteSpace(genero) ||
-            string.IsNullOrWhiteSpace(tipocapa))
+        if (string.IsNullOrWhiteSpace(titulo) || string.IsNullOrWhiteSpace(autor) || string.IsNullOrWhiteSpace(subtitulo) || string.IsNullOrWhiteSpace(isbn) ||
+            string.IsNullOrWhiteSpace(editora) || string.IsNullOrWhiteSpace(genero) || string.IsNullOrWhiteSpace(tipocapa))
         {
             throw new ArgumentException("Valores inválidos: Nenhum campo pode ser vazio.");
         }
